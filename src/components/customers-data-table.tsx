@@ -152,6 +152,7 @@ const CustomersDataTable = ({
 
   const onActionClick = async (data: ActiveCustomerTableDataAction) => {
     setActiveTableAction(data);
+    console.log(data)
   };
 
   const columns = getTableColumns(onActionClick);

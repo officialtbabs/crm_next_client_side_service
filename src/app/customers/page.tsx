@@ -19,6 +19,7 @@ const CustomersPage = () => {
   const [isJobFormDrawerOpened, setIsJobFormDrawerOpened] = useState(false);
 
   useEffect(() => {
+    console.log(activeTableAction);
     if (activeTableAction) {
       const { action } = activeTableAction;
 

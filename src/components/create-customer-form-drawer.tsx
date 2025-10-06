@@ -22,12 +22,6 @@ import { createCustomersApi } from "@/apis/customers.api";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 
-// type Party = {
-//   id: string;
-//   name: string;
-//   logo: string; // image URL
-// };
-
 interface CreateCustomerFormDrawerProps {
   isOpened: boolean;
   setIsOpened: Dispatch<SetStateAction<boolean>>;
@@ -49,6 +43,7 @@ const CreateCustomerFormDrawer = ({
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CreateCustomerRequestDto>({
     defaultValues: {
@@ -62,8 +57,10 @@ const CreateCustomerFormDrawer = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnOpenChange = (open: boolean) => {
-    if (!open) setIsOpened(false);
-    else setIsOpened(true);
+    if (!open) {
+      setIsOpened(false);
+      reset();
+    } else setIsOpened(true);
   };
 
   const onSubmitHandler: SubmitHandler<CreateCustomerRequestDto> = async (
@@ -101,9 +98,6 @@ const CreateCustomerFormDrawer = ({
       onOpenChange={handleOnOpenChange}
       direction={isMobile ? "bottom" : "right"}
     >
-      {/* <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
-      </DrawerTrigger> */}
       <DrawerPortal>
         <DrawerContent className="w-full md:min-w-xl">
           <div className="w-full max-h-full py-10 overflow-y-auto">

@@ -50,6 +50,8 @@ const CreateJobFormDrawer = ({
   const {
     control,
     handleSubmit,
+    reset,
+    setValue,
     formState: { errors },
   } = useForm<CreateJobRequestDto>({
     defaultValues: {
@@ -65,6 +67,7 @@ const CreateJobFormDrawer = ({
     if (!open) {
       setIsOpened(false);
       setActiveTableAction(null);
+      reset();
     } else setIsOpened(true);
   };
 
@@ -92,8 +95,13 @@ const CreateJobFormDrawer = ({
   };
 
   useEffect(() => {
+    if (!activeTableId) return;
+    setValue("customerId", activeTableId);
+  }, [activeTableId, setValue]);
+
+  useEffect(() => {
     displayFormErrors(errors);
-  }, [errors]);
+  }, [errors, activeTableId]);
 
   return (
     <Drawer
