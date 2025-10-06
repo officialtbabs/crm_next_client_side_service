@@ -24,7 +24,7 @@ const CustomersPage = () => {
 
       switch (action) {
         case CustomerTableActions.createJob:
-          setIsCustomerFormDrawerOpened(true);
+          setIsJobFormDrawerOpened(true);
           break;
       }
     }
